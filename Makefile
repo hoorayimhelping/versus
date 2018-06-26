@@ -12,6 +12,7 @@ watch: ## Dev mode: Watch for changes and rebuild only relevant parts
 lint: ## Lint js files to find runtime errors
 	yarn lint
 
+.PHONY: test
 test: ## Run tests
 	yarn test
 

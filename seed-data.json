@@ -1,0 +1,46 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "taskName": "Name 1",
+            "taskDescription": "Some description 1",
+            "state": "todo"
+        },
+        {
+            "id": 2,
+            "taskName": "Name 2",
+            "taskDescription": "Some description 2",
+            "state": "todo"
+        },
+        {
+            "id": 3,
+            "taskName": "Name 3",
+            "taskDescription": "Some description 3",
+            "state": "todo"
+        },
+        {
+            "id": 4,
+            "taskName": "Name 4",
+            "taskDescription": "Some description 4",
+            "state": "todo"
+        },
+        {
+            "id": 5,
+            "taskName": "Name 5",
+            "taskDescription": "Some description 5",
+            "state": "in-progress"
+        },
+        {
+            "id": 6,
+            "taskName": "Name 6",
+            "taskDescription": "Some description 6",
+            "state": "in-progress"
+        },
+        {
+            "id": 7,
+            "taskName": "Name 7",
+            "taskDescription": "Some description 7",
+            "state": "complete"
+        }
+    ]
+}

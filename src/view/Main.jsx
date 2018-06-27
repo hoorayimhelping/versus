@@ -4,9 +4,12 @@ import ReactDOM from "react-dom";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from './Container';
 
-import ProjectManager from '../model/ProjectManager';
+import ProjectManager, { Todo, InProgress, Done, Completed } from '../model/ProjectManager';
 
-let manager = new ProjectManager();
+
+const manager = new ProjectManager();
+
+manager.tasks = manager.BuildDefaultTasks();
 
 ReactDOM.render((
   <React.Fragment>

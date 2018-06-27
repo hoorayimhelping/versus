@@ -8,8 +8,7 @@ import ProjectManager, { Todo, InProgress, Done, Completed } from '../model/Proj
 
 
 const manager = new ProjectManager();
-
-manager.tasks = manager.BuildDefaultTasks();
+manager.tasks = manager.buildDefaultTasks();
 
 ReactDOM.render((
   <React.Fragment>

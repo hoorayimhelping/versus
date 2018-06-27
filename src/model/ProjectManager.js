@@ -28,41 +28,47 @@ class ProjectManager {
     this.tasks = [];
   }
 
-  static CreateNewTask(fsm, id, name, description, state = Todo) {
+  createNewTask(id, name, description, state = Todo) {
+    const { TaskStateMachine } = this;
+    const taskStateMachine = new TaskStateMachine();
+
     if (state !== Todo) {
       // the machine will default to Todo, so if this method receives garbage input, it can just be ignored
       // otherwise, transition the machine to the state set by the user
       if (([InProgress, Done, Completed].includes(state))) {
         switch (state) {
           case InProgress:
-            fsm.start();
+            taskStateMachine.start();
             break;
           case Done:
-            fsm.start();
-            fsm.finish();
+            taskStateMachine.start();
+            taskStateMachine.finish();
             break;
           case Completed:
-            fsm.start();
-            fsm.finish();
-            fsm.archive();
+            taskStateMachine.start();
+            taskStateMachine.finish();
+            taskStateMachine.archive();
             break;
         }
       }
     }
 
-    const task = new Task(fsm, id, name, description);
-    return task;
+    return new Task(taskStateMachine, id, name, description);
   }
 
-  BuildDefaultTasks() {
+  // this method doesn't really belong here, but the use case is kind of not-typical.
+  // in real life (irl) these default values would come from some external data provider that this module could interface with
+  // and make requests to to get the canonical state and this method would concern itself with fetching the state.
+  // that's a bit out of scope for this, so this method will stand in
+  buildDefaultTasks() {
     return [
-      ProjectManager.CreateNewTask(new this.TaskStateMachine(), 1, 'Name 1', 'Some description 1', Todo),
-      ProjectManager.CreateNewTask(new this.TaskStateMachine(), 2, 'Name 2', 'Some description 2', Todo),
-      ProjectManager.CreateNewTask(new this.TaskStateMachine(), 3, 'Name 3', 'Some description 3', Todo),
-      ProjectManager.CreateNewTask(new this.TaskStateMachine(), 4, 'Name 4', 'Some description 4', Todo),
-      ProjectManager.CreateNewTask(new this.TaskStateMachine(), 5, 'Name 5', 'Some description 5', InProgress),
-      ProjectManager.CreateNewTask(new this.TaskStateMachine(), 6, 'Name 6', 'Some description 6', InProgress),
-      ProjectManager.CreateNewTask(new this.TaskStateMachine(), 7, 'Name 7', 'Some description 7', Done)
+      this.createNewTask(1, 'Name 1', 'Some description 1', Todo),
+      this.createNewTask(2, 'Name 2', 'Some description 2', Todo),
+      this.createNewTask(3, 'Name 3', 'Some description 3', Todo),
+      this.createNewTask(4, 'Name 4', 'Some description 4', Todo),
+      this.createNewTask(5, 'Name 5', 'Some description 5', InProgress),
+      this.createNewTask(6, 'Name 6', 'Some description 6', InProgress),
+      this.createNewTask(7, 'Name 7', 'Some description 7', Done)
     ];
 }
 }

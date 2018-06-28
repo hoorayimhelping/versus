@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 let styles = theme => ({});
 
 let Tasks = props => {
+  let { projectManager } = props;
+
   return (
     <Grid container>
       <Grid item xs>
@@ -19,23 +21,30 @@ let Tasks = props => {
           Todo
         </Typography>
         <List>
-          <ListItem>
-            <p>Item 1</p>
-          </ListItem>
-          <ListItem>
-            <p>Item 2</p>
-          </ListItem>
+          {projectManager.todoTickets.map(ticket => (
+            <ListItem key={`ticket-${ticket.id}`}><p>{ticket.id} - {ticket.name}: {ticket.description}</p></ListItem>)
+          )}
         </List>
       </Grid>
       <Grid item xs>
         <Typography variant="display2" gutterBottom>
           In Progress
         </Typography>
+        <List>
+          {projectManager.inProgressTickets.map(ticket => (
+            <ListItem key={`ticket-${ticket.id}`}><p>{ticket.id} - {ticket.name}: {ticket.description}</p></ListItem>)
+          )}
+        </List>
       </Grid>
       <Grid item xs>
         <Typography variant="display2" gutterBottom>
           Done
         </Typography>
+        <List>
+          {projectManager.doneTickets.map(ticket => (
+            <ListItem key={`ticket-${ticket.id}`}><p>{ticket.id} - {ticket.name}: {ticket.description}</p></ListItem>)
+          )}
+        </List>
       </Grid>
     </Grid>
   );

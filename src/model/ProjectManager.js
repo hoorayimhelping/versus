@@ -20,7 +20,7 @@ const defaultTaskStateMachineParameters = {
   ]
 };
 
-const MachineFactory = StateMachine.factory(defaultTaskStateMachineParameters);
+let MachineFactory = StateMachine.factory(defaultTaskStateMachineParameters);
 
 class ProjectManager {
   constructor(TaskStateMachine = MachineFactory) {
@@ -47,8 +47,8 @@ class ProjectManager {
   // passing in the id is silly, but it simulates having some external id service (like an auto incrementing column in a db) here
   // in real life, we'd obviously have some canonical source of truth handling this on the backend
   createNewTask(name, description, state = Todo, id = this.tasks.length + 1) {
-    const { TaskStateMachine } = this;
-    const taskStateMachine = new TaskStateMachine();
+    let { TaskStateMachine } = this;
+    let taskStateMachine = new TaskStateMachine();
 
     if (state !== Todo) {
       /*

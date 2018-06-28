@@ -24,22 +24,22 @@ describe("The Project Manager model", () => {
     });
 
     it("defaults to a state of `Todo` if garbage is passed in", () => {
-      let task = projectManager.createNewTask('Virus.exe', "Hax", 1, "'or 1=1;select * from users");
+      let task = projectManager.createNewTask('Virus.exe', "Hax", "'or 1=1;select * from users");
       expect(task.state).toBe(Todo);
     });
 
     it("sets the state to In Progress", () => {
-      let task = projectManager.createNewTask('Cats', 'Something something something cats sell stuff probably', 1, InProgress);
+      let task = projectManager.createNewTask('Cats', 'Something something something cats sell stuff probably', InProgress);
       expect(task.state).toBe(InProgress);
     });
 
     it("sets the state to Done", () => {
-      let task = projectManager.createNewTask('Filters', 'Putting filters on things will save our product I bet', 1, Done);
+      let task = projectManager.createNewTask('Filters', 'Putting filters on things will save our product I bet', Done);
       expect(task.state).toBe(Done);
     });
 
     it("sets the state to Completed", () => {
-      let task = projectManager.createNewTask('Influencers', 'I keep hearing this term, we should explore it in our app.', 1, Completed);
+      let task = projectManager.createNewTask('Influencers', 'I keep hearing this term, we should explore it in our app.', Completed);
       expect(task.state).toBe(Completed);
     });
 
@@ -53,6 +53,30 @@ describe("The Project Manager model", () => {
       task = projectManager.createNewTask('Less gifs', "The kids don't like gifs as much as we thought. Get rid of them");
 
       expect(task.id).toEqual(11);
+    });
+  });
+
+  describe("filtering based on task type using `buildDefaultTasks`", () => {
+    let projectManager = new ProjectManager;
+    projectManager.tasks = projectManager.buildDefaultTasks();
+
+    it("has the proper number of Todo tickets", () => {
+      expect(projectManager.todoTickets.length).toEqual(4);
+    });
+
+    it("has the proper number of In Progress tickets", () => {
+      expect(projectManager.inProgressTickets.length).toEqual(2);
+    });
+
+    it("has the proper number of Done tickets", () => {
+      expect(projectManager.doneTickets.length).toEqual(1);
+    });
+
+    it("has the proper number of Completed tickets", () => {
+      expect(projectManager.completedTickets.length).toEqual(0);
+
+      projectManager.tasks.push(projectManager.createNewTask('Name 8', 'Some description 8', Completed));
+      expect(projectManager.completedTickets.length).toEqual(1);
     });
   });
 });

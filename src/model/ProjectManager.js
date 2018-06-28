@@ -28,9 +28,25 @@ class ProjectManager {
     this.tasks = [];
   }
 
+  get todoTickets() {
+    return this.tasks.filter(task => task.state === Todo);
+  }
+
+  get inProgressTickets() {
+    return this.tasks.filter(task => task.state === InProgress);
+  }
+
+  get doneTickets() {
+    return this.tasks.filter(task => task.state === Done);
+  }
+
+  get completedTickets() {
+    return this.tasks.filter(task => task.state === Completed);
+  }
+
   // passing in the id is silly, but it simulates having some external id service (like an auto incrementing column in a db) here
   // in real life, we'd obviously have some canonical source of truth handling this on the backend
-  createNewTask(name, description, id = this.tasks.length + 1, state = Todo) {
+  createNewTask(name, description, state = Todo, id = this.tasks.length + 1) {
     const { TaskStateMachine } = this;
     const taskStateMachine = new TaskStateMachine();
 
@@ -73,13 +89,13 @@ class ProjectManager {
    **/
   buildDefaultTasks() {
     return [
-      this.createNewTask('Name 1', 'Some description 1', 1, Todo),
-      this.createNewTask('Name 2', 'Some description 2', 2, Todo),
-      this.createNewTask('Name 3', 'Some description 3', 3, Todo),
-      this.createNewTask('Name 4', 'Some description 4', 4, Todo),
-      this.createNewTask('Name 5', 'Some description 5', 5, InProgress),
-      this.createNewTask('Name 6', 'Some description 6', 6, InProgress),
-      this.createNewTask('Name 7', 'Some description 7', 7, Done)
+      this.createNewTask('Name 1', 'Some description 1', Todo, 1),
+      this.createNewTask('Name 2', 'Some description 2', Todo, 2),
+      this.createNewTask('Name 3', 'Some description 3', Todo, 3),
+      this.createNewTask('Name 4', 'Some description 4', Todo, 4),
+      this.createNewTask('Name 5', 'Some description 5', InProgress, 5),
+      this.createNewTask('Name 6', 'Some description 6', InProgress, 6),
+      this.createNewTask('Name 7', 'Some description 7', Done, 7)
     ];
 }
 }

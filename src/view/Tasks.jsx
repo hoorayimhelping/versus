@@ -5,9 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
+
+import Task from './Task';
 
 let styles = theme => ({});
 
@@ -21,9 +21,7 @@ let Tasks = props => {
           Todo
         </Typography>
         <List>
-          {projectManager.todoTasks.map(task => (
-            <ListItem key={`task-${task.id}`}><p>{task.id} - {task.name}: {task.description}</p></ListItem>)
-          )}
+          {projectManager.todoTasks.map(task => (<Task task={task} key={`task-${task.name}-${task.id}`} />))}
         </List>
       </Grid>
       <Grid item xs>
@@ -31,9 +29,7 @@ let Tasks = props => {
           In Progress
         </Typography>
         <List>
-          {projectManager.inProgressTasks.map(task => (
-            <ListItem key={`task-${task.id}`}><p>{task.id} - {task.name}: {task.description}</p></ListItem>)
-          )}
+          {projectManager.inProgressTasks.map(task => (<Task task={task} key={`task-${task.name}-${task.id}`} />))}
         </List>
       </Grid>
       <Grid item xs>
@@ -41,9 +37,7 @@ let Tasks = props => {
           Done
         </Typography>
         <List>
-          {projectManager.doneTasks.map(task => (
-            <ListItem key={`task-${task.id}`}><p>{task.id} - {task.name}: {task.description}</p></ListItem>)
-          )}
+          {projectManager.doneTasks.map(task => (<Task task={task} key={`task-${task.name}-${task.id}`} />))}
         </List>
       </Grid>
     </Grid>

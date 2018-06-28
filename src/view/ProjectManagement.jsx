@@ -10,6 +10,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
+import Tasks from './Tasks';
+
 let styles = theme => ({
   root: {
     flexGrow: 1,
@@ -22,7 +24,7 @@ let styles = theme => ({
 });
 
 let Container = props => {
-  let { classes } = props;
+  let { classes, projectManager } = props;
 
   return (
     <div className={classes.root}>
@@ -33,31 +35,7 @@ let Container = props => {
           </Paper>
         </Grid>
         <Grid item xs={8}>
-          <Grid container>
-            <Grid item xs>
-              <Typography variant="display2" gutterBottom>
-                Todo
-              </Typography>
-              <List>
-                <ListItem>
-                  <p>Item 1</p>
-                </ListItem>
-                <ListItem>
-                  <p>Item 2</p>
-                </ListItem>
-              </List>
-            </Grid>
-            <Grid item xs>
-              <Typography variant="display2" gutterBottom>
-                In Progress
-              </Typography>
-            </Grid>
-            <Grid item xs>
-              <Typography variant="display2" gutterBottom>
-                Done
-              </Typography>
-            </Grid>
-          </Grid>
+          <Tasks projectManager={projectManager} />
         </Grid>
       </Grid>
     </div>
@@ -66,6 +44,7 @@ let Container = props => {
 
 Container.propTypes = {
   classes: PropTypes.object.isRequired,
+  projectManager: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Container);

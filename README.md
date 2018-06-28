@@ -18,13 +18,13 @@
 
 *Acceptance Criteria:*
 
-* Use the following URL to seed the initial application data - https://private-caaa7-versustracker.apiary-mock.com/tasks
+* Use the following URL to seed the initial application data - https://private-caaa7-versustracker.apiary-mock.com/tasks :heavy_check_mark:
 
 * Please review the mockups (attached) for how we would like it structured
 
 * When adding a new task the dialog is a modal that appears on top of the existing UI
 
-* New tasks default to the TODO state
+* New tasks default to the TODO state :heavy_check_mark:
 
 * Please use Material-UI (http://www.material-ui.com/#/) for standard UI components, feel free to pull in any other dependencies else you may need :heavy_check_mark:
 

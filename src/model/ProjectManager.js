@@ -28,19 +28,19 @@ class ProjectManager {
     this.tasks = [];
   }
 
-  get todoTickets() {
+  get todoTasks() {
     return this.tasks.filter(task => task.state === Todo);
   }
 
-  get inProgressTickets() {
+  get inProgressTasks() {
     return this.tasks.filter(task => task.state === InProgress);
   }
 
-  get doneTickets() {
+  get doneTasks() {
     return this.tasks.filter(task => task.state === Done);
   }
 
-  get completedTickets() {
+  get completedTasks() {
     return this.tasks.filter(task => task.state === Completed);
   }
 

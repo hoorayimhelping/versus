@@ -61,22 +61,22 @@ describe("The Project Manager model", () => {
     projectManager.tasks = projectManager.buildDefaultTasks();
 
     it("has the proper number of Todo tickets", () => {
-      expect(projectManager.todoTickets.length).toEqual(4);
+      expect(projectManager.todoTasks.length).toEqual(4);
     });
 
     it("has the proper number of In Progress tickets", () => {
-      expect(projectManager.inProgressTickets.length).toEqual(2);
+      expect(projectManager.inProgressTasks.length).toEqual(2);
     });
 
     it("has the proper number of Done tickets", () => {
-      expect(projectManager.doneTickets.length).toEqual(1);
+      expect(projectManager.doneTasks.length).toEqual(1);
     });
 
     it("has the proper number of Completed tickets", () => {
-      expect(projectManager.completedTickets.length).toEqual(0);
+      expect(projectManager.completedTasks.length).toEqual(0);
 
       projectManager.tasks.push(projectManager.createNewTask('Name 8', 'Some description 8', Completed));
-      expect(projectManager.completedTickets.length).toEqual(1);
+      expect(projectManager.completedTasks.length).toEqual(1);
     });
   });
 });

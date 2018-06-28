@@ -21,8 +21,8 @@ let Tasks = props => {
           Todo
         </Typography>
         <List>
-          {projectManager.todoTickets.map(ticket => (
-            <ListItem key={`ticket-${ticket.id}`}><p>{ticket.id} - {ticket.name}: {ticket.description}</p></ListItem>)
+          {projectManager.todoTasks.map(task => (
+            <ListItem key={`task-${task.id}`}><p>{task.id} - {task.name}: {task.description}</p></ListItem>)
           )}
         </List>
       </Grid>
@@ -31,8 +31,8 @@ let Tasks = props => {
           In Progress
         </Typography>
         <List>
-          {projectManager.inProgressTickets.map(ticket => (
-            <ListItem key={`ticket-${ticket.id}`}><p>{ticket.id} - {ticket.name}: {ticket.description}</p></ListItem>)
+          {projectManager.inProgressTasks.map(task => (
+            <ListItem key={`task-${task.id}`}><p>{task.id} - {task.name}: {task.description}</p></ListItem>)
           )}
         </List>
       </Grid>
@@ -41,8 +41,8 @@ let Tasks = props => {
           Done
         </Typography>
         <List>
-          {projectManager.doneTickets.map(ticket => (
-            <ListItem key={`ticket-${ticket.id}`}><p>{ticket.id} - {ticket.name}: {ticket.description}</p></ListItem>)
+          {projectManager.doneTasks.map(task => (
+            <ListItem key={`task-${task.id}`}><p>{task.id} - {task.name}: {task.description}</p></ListItem>)
           )}
         </List>
       </Grid>

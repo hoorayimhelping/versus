@@ -8,22 +8,8 @@ class Task {
     this.description = description;
   }
 
-  move() {
-    switch(this.transitionName) {
-      case Start:
-        this.taskStateMachine.start();
-        break;
-      case Finish:
-        this.taskStateMachine.finish();
-        break;
-      case Archive:
-        this.taskStateMachine.archive();
-        break;
-    }
-  }
-
   get transitionName() {
-    // for this simple test, we only have one transition and this method returns an array
+    // for this simple assignment, we only have one transition and this method returns an array
     return this.taskStateMachine.transitions()[0];
   }
 

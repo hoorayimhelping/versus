@@ -44,6 +44,24 @@ class ProjectManager {
     return this.tasks.filter(task => task.state === Completed);
   }
 
+  transitionTask(taskId) {
+    let task = this.tasks.find(task => task.id == taskId);
+
+    if (task && task.transitionName) {
+      switch(task.transitionName) {
+        case Start:
+          task.taskStateMachine.start();
+          break;
+        case Finish:
+          task.taskStateMachine.finish();
+          break;
+        case Archive:
+          task.taskStateMachine.archive();
+          break;
+      }
+    }
+  }
+
   // passing in the id is silly, but it simulates having some external id service (like an auto incrementing column in a db) here
   // in real life, we'd obviously have some canonical source of truth handling this on the backend
   createNewTask(name, description, state = Todo, id = this.tasks.length + 1) {

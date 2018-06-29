@@ -15,8 +15,7 @@ let Task = props => {
 
   let clickHandler = (event) => {
     event.preventDefault();
-    task.move();
-    onClick();
+    onClick(task.id);
   };
 
   return (

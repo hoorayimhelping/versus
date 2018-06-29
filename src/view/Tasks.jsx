@@ -14,7 +14,9 @@ class Tasks extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick(taskId) {
+    this.props.projectManager.transitionTask(taskId);
+
     // we want to call `forceUpdate` here because the state of the projectManager has changed,
     // but it doesn't get picked up as a prop change, so a re-render needs to be explicitly called
     // this might also be accomplished by inspecting the state of the projectManager on `shouldComponentUpdate`

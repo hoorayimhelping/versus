@@ -1,4 +1,4 @@
-import { Todo } from './ProjectManager';
+import { Archive, Finish, Start, Todo } from './ProjectManager';
 
 class Task {
   constructor(taskStateMachine, id, name, description) {
@@ -6,6 +6,20 @@ class Task {
     this.id = id;
     this.name = name;
     this.description = description;
+  }
+
+  move() {
+    switch(this.transitionName) {
+      case Start:
+        this.taskStateMachine.start();
+        break;
+      case Finish:
+        this.taskStateMachine.finish();
+        break;
+      case Archive:
+        this.taskStateMachine.archive();
+        break;
+    }
   }
 
   get transitionName() {

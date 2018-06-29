@@ -11,12 +11,19 @@ import Paper from '@material-ui/core/Paper';
 let styles = theme => ({});
 
 let Task = props => {
-  let { task } = props;
+  let { onClick, task } = props;
+
+  let clickHandler = (event) => {
+    event.preventDefault();
+    task.move();
+    onClick();
+  };
+
   return (
     <ListItem key={`task-${task.id}`}>
       <Paper>
         <p>{task.id} - {task.name}: {task.description}</p>
-        <Button>{task.transitionName}</Button>
+        <Button onClick={clickHandler}>{task.transitionName}</Button>
       </Paper>
     </ListItem>
   );
@@ -24,6 +31,7 @@ let Task = props => {
 
 Task.propTypes = {
   classes: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
   task: PropTypes.object.isRequired
 };
 

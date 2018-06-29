@@ -44,6 +44,11 @@ class NewTaskModal extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    // basic simple validation to make sure there is some kind of value
+    if (this.state.name === '' || this.state.description === '') {
+      return;
+    }
+
     this.props.handleSubmit(this.state.name, this.state.description);
 
     this.setState({

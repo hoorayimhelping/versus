@@ -62,4 +62,6 @@ make test
 
 * comments: I've added some comments throughout the code explaining my thought process and concerns / thoughts about potential future issues. Normally I'd write comments to add context to my code (typically justification for weird code by explaining business cases), but in this case, I'm trying to give insight into my thought process. Just want to let y'all know where my head's at.
 
+* validation: Creating a new task does very basic validation - it checks the `name` and `description` fields for a value and if none exists, it doesn't submit the form and leaves the modal there. This is very simple, but I think full-featured validation on this is a bit beyond the scope of this project.
+
 * prod vs dev dependencies: I decided to add everything as a prod dependency for this simple assignment since the prod and dev workflows aren't that different and it's an example. When starting a real project, this is something we'd take the time to think about, but it's not all _that_ important here

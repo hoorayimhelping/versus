@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Tasks from './Tasks';
 import NewTaskModal from './NewTaskModal';
 
-class Container extends React.Component {
+class ProjectManagement extends React.Component {
   constructor(props) {
     super(props);
 
@@ -29,6 +29,8 @@ class Container extends React.Component {
     this.setState({
       newTaskModelIsOpen: false
     });
+
+    this.props.projectManager.addTask(name, description);
   }
 
   handleNewTaskClick(event) {
@@ -66,8 +68,8 @@ class Container extends React.Component {
   }
 };
 
-Container.propTypes = {
+ProjectManagement.propTypes = {
   projectManager: PropTypes.object.isRequired
 };
 
-export default Container;
+export default ProjectManagement;

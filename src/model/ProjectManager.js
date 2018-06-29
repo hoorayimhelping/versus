@@ -44,6 +44,10 @@ class ProjectManager {
     return this.tasks.filter(task => task.state === Completed);
   }
 
+  addTask(name, description, state = Todo) {
+    this.tasks.push(this.createNewTask(name, description, state, this.tasks.length + 1));
+  }
+
   transitionTask(taskId) {
     let task = this.tasks.find(task => task.id == taskId);
 

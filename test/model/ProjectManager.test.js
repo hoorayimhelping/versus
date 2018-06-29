@@ -57,7 +57,7 @@ describe("The Project Manager model", () => {
   });
 
   describe("filtering based on task type using `buildDefaultTasks`", () => {
-    let projectManager = new ProjectManager;
+    let projectManager = new ProjectManager();
     projectManager.tasks = projectManager.buildDefaultTasks();
 
     it("has the proper number of Todo tickets", () => {
@@ -76,6 +76,59 @@ describe("The Project Manager model", () => {
       expect(projectManager.completedTasks.length).toEqual(0);
 
       projectManager.tasks.push(projectManager.createNewTask('Name 8', 'Some description 8', Completed));
+      expect(projectManager.completedTasks.length).toEqual(1);
+    });
+  });
+
+  describe("transitioning a task", () => {
+    let projectManager;
+
+    beforeEach(() => {
+      projectManager = new ProjectManager();
+      projectManager.tasks = projectManager.buildDefaultTasks();
+    });
+
+    it("does nothing if it cannot find the task", () => {
+      expect(projectManager.todoTasks.length).toEqual(4);
+      expect(projectManager.inProgressTasks.length).toEqual(2);
+      expect(projectManager.doneTasks.length).toEqual(1);
+      expect(projectManager.completedTasks.length).toEqual(0);
+
+      projectManager.transitionTask(34234234);
+
+      expect(projectManager.todoTasks.length).toEqual(4);
+      expect(projectManager.inProgressTasks.length).toEqual(2);
+      expect(projectManager.doneTasks.length).toEqual(1);
+      expect(projectManager.completedTasks.length).toEqual(0);
+    });
+
+    it("transitions tasks from Todo to In Progress", () => {
+      expect(projectManager.todoTasks.length).toEqual(4);
+      expect(projectManager.inProgressTasks.length).toEqual(2);
+
+      projectManager.transitionTask(1);
+
+      expect(projectManager.todoTasks.length).toEqual(3);
+      expect(projectManager.inProgressTasks.length).toEqual(3);
+    });
+
+    it("transitions tasks from In Progress to Done", () => {
+      expect(projectManager.inProgressTasks.length).toEqual(2);
+      expect(projectManager.doneTasks.length).toEqual(1);
+
+      projectManager.transitionTask(5);
+
+      expect(projectManager.inProgressTasks.length).toEqual(1);
+      expect(projectManager.doneTasks.length).toEqual(2);
+    });
+
+    it("transitions tasks from Done to Completed", () => {
+      expect(projectManager.doneTasks.length).toEqual(1);
+      expect(projectManager.completedTasks.length).toEqual(0);
+
+      projectManager.transitionTask(7);
+
+      expect(projectManager.doneTasks.length).toEqual(0);
       expect(projectManager.completedTasks.length).toEqual(1);
     });
   });

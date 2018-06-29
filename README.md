@@ -6,15 +6,15 @@
 
 *Required Features:*
 
-* Ability to add new tasks to a project
+* Ability to add new tasks to a project :heavy_check_mark:
 
-* Ability to move Tasks from Todo -> In Progress 
+* Ability to move Tasks from Todo -> In Progress :heavy_check_mark:
 
-* Ability to move Tasks from In Progress -> Complete  
+* Ability to move Tasks from In Progress -> Complete  :heavy_check_mark:
 
-* Ability to move Tasks from Complete -> Archive
+* Ability to move Tasks from Complete -> Archive :heavy_check_mark:
 
-* When a Task is archived it is no longer in view
+* When a Task is archived it is no longer in view :heavy_check_mark:
 
 *Acceptance Criteria:*
 
@@ -22,7 +22,7 @@
 
 * Please review the mockups (attached) for how we would like it structured
 
-* When adding a new task the dialog is a modal that appears on top of the existing UI
+* When adding a new task the dialog is a modal that appears on top of the existing UI :heavy_check_mark:
 
 * New tasks default to the TODO state :heavy_check_mark:
 

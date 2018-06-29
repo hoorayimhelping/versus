@@ -23,8 +23,12 @@ class Container extends React.Component {
     this.state = { newTaskModelIsOpen: false };
   }
 
-  handleModalSubmit(event) {
-    console.log(event.target);
+  handleModalSubmit(name, description) {
+    console.log('submit', name, description);
+
+    this.setState({
+      newTaskModelIsOpen: false
+    });
   }
 
   handleNewTaskClick(event) {

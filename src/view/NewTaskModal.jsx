@@ -27,20 +27,61 @@ let styles = theme => ({
   },
 });
 
-let NewTaskModal = props => {
-  return (
-    <Modal open={props.isOpen} onClose={props.handleClose}>
-      <div style={modalStyle} className={props.classes.paper}>
-        <Typography variant="title" id="modal-title">Add New Task</Typography>
+class NewTaskModal extends React.Component {
+  constructor(props) {
+    super(props);
 
-        <form noValidate autoComplete="off" onSubmit={props.handleSubmit}>
-          <TextField id="name" label="Name" margin="normal" />
-          <TextField id="description" label="Description" margin="normal" />
-          <Button variant="contained" color="primary">Add Task</Button>
-        </form>
-      </div>
-    </Modal>
-  );
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateName = this.updateName.bind(this);
+    this.updateDescription = this.updateDescription.bind(this);
+
+    this.state = {
+      name: '',
+      description: ''
+    };
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    this.props.handleSubmit(this.state.name, this.state.description);
+
+    this.setState({
+      name: '',
+      description: ''
+    });
+  }
+
+  updateName(event) {
+    this.setState({
+      name: event.target.value
+    });
+  }
+
+  updateDescription(event) {
+    this.setState({
+      description: event.target.value
+    });
+  }
+
+  render() {
+    let { classes, handleClose, isOpen } = this.props;
+
+    return (
+      <Modal open={isOpen} onClose={handleClose}>
+        <div style={modalStyle} className={classes.paper}>
+          <Button onClick={handleClose}>X</Button>
+          <Typography variant="title" id="modal-title">Add New Task</Typography>
+
+          <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
+            <TextField id="name" label="Name" margin="normal" value={this.state.name} onChange={this.updateName} />
+            <TextField id="description" label="Description" margin="normal" value={this.state.description} onChange={this.updateDescription} />
+            <Button variant="contained" color="primary" type="submit">Add Task</Button>
+          </form>
+        </div>
+      </Modal>
+    );
+  }
 };
 
 NewTaskModal.propTypes = {

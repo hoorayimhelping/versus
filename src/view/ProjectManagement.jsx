@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
@@ -11,40 +10,60 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import Tasks from './Tasks';
+import NewTaskModal from './NewTaskModal';
 
-let styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-});
+class Container extends React.Component {
+  constructor(props) {
+    super(props);
 
-let Container = props => {
-  let { classes, projectManager } = props;
+    this.handleModalSubmit = this.handleModalSubmit.bind(this);
+    this.handleNewTaskClick = this.handleNewTaskClick.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
 
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={24}>
-        <Grid item xs>
-          <Paper className={classes.root} elevation={1}>
-            <Button>Add Task</Button>
-          </Paper>
+    this.state = { newTaskModelIsOpen: false };
+  }
+
+  handleModalSubmit(event) {
+    console.log(event.target);
+  }
+
+  handleNewTaskClick(event) {
+    event.preventDefault();
+    this.setState({
+      newTaskModelIsOpen: true
+    });
+  }
+
+  handleModalClose(event) {
+    event.preventDefault();
+    this.setState({
+      newTaskModelIsOpen: false
+    });
+  }
+
+  render() {
+    let { classes, projectManager } = this.props;
+
+    return (
+      <div>
+        <NewTaskModal isOpen={this.state.newTaskModelIsOpen} handleClose={this.handleModalClose} handleSubmit={this.handleModalSubmit} />
+        <Grid container spacing={24}>
+          <Grid item xs>
+            <Paper elevation={1}>
+              <Button onClick={this.handleNewTaskClick}>Add Task</Button>
+            </Paper>
+          </Grid>
+          <Grid item xs={8}>
+            <Tasks projectManager={projectManager} />
+          </Grid>
         </Grid>
-        <Grid item xs={8}>
-          <Tasks projectManager={projectManager} />
-        </Grid>
-      </Grid>
-    </div>
-  )
+      </div>
+    );
+  }
 };
 
 Container.propTypes = {
-  classes: PropTypes.object.isRequired,
   projectManager: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Container);
+export default Container;

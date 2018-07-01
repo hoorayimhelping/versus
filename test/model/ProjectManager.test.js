@@ -19,38 +19,45 @@ describe("The Project Manager model", () => {
     let projectManager = new ProjectManager();
 
     it("defaults to a state of `Todo`", () => {
-      let task = projectManager.createNewTask('Add a lit button to the page', "Our pages aren't lit enough fam. We need to make them more lit", 1);
+      projectManager.addTask('Add a lit button to the page', "Our pages aren't lit enough fam. We need to make them more lit", 1);
+      let task = projectManager.tasks[projectManager.tasks.length - 1];
       expect(task.state).toBe(Todo);
     });
 
     it("defaults to a state of `Todo` if garbage is passed in", () => {
-      let task = projectManager.createNewTask('Virus.exe', "Hax", "'or 1=1;select * from users");
+      projectManager.addTask('Virus.exe', "Hax", "'or 1=1;select * from users");
+      let task = projectManager.tasks[projectManager.tasks.length - 1];
       expect(task.state).toBe(Todo);
     });
 
     it("sets the state to In Progress", () => {
-      let task = projectManager.createNewTask('Cats', 'Something something something cats sell stuff probably', InProgress);
+      projectManager.addTask('Cats', 'Something something something cats sell stuff probably', InProgress);
+      let task = projectManager.tasks[projectManager.tasks.length - 1];
       expect(task.state).toBe(InProgress);
     });
 
     it("sets the state to Done", () => {
-      let task = projectManager.createNewTask('Filters', 'Putting filters on things will save our product I bet', Done);
+      projectManager.addTask('Filters', 'Putting filters on things will save our product I bet', Done);
+      let task = projectManager.tasks[projectManager.tasks.length - 1];
       expect(task.state).toBe(Done);
     });
 
     it("sets the state to Completed", () => {
-      let task = projectManager.createNewTask('Influencers', 'I keep hearing this term, we should explore it in our app.', Completed);
+      projectManager.addTask('Influencers', 'I keep hearing this term, we should explore it in our app.', Completed);
+      let task = projectManager.tasks[projectManager.tasks.length - 1];
       expect(task.state).toBe(Completed);
     });
 
     it("automatically default increments the id by the length of the tasks array + 1 if no id is passed in", () => {
       let projectManager = new ProjectManager();
-      let task = projectManager.createNewTask('More gifs', 'The kids like gifs. Make more of them and add them somewhere');
+      projectManager.addTask('More gifs', 'The kids like gifs. Make more of them and add them somewhere');
+      let task = projectManager.tasks[projectManager.tasks.length - 1];
 
       expect(task.id).toEqual(1);
 
       projectManager.tasks = new Array(10).fill({});
-      task = projectManager.createNewTask('Less gifs', "The kids don't like gifs as much as we thought. Get rid of them");
+      projectManager.addTask('Less gifs', "The kids don't like gifs as much as we thought. Get rid of them");
+      task = projectManager.tasks[projectManager.tasks.length - 1];
 
       expect(task.id).toEqual(11);
     });
@@ -75,7 +82,7 @@ describe("The Project Manager model", () => {
     it("has the proper number of Completed tickets", () => {
       expect(projectManager.completedTasks.length).toEqual(0);
 
-      projectManager.tasks.push(projectManager.createNewTask('Name 8', 'Some description 8', Completed));
+      projectManager.addTask('Name 8', 'Some description 8', Completed);
       expect(projectManager.completedTasks.length).toEqual(1);
     });
   });

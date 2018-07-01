@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
+import AddIcon from '@material-ui/icons/Add';
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
@@ -15,6 +16,9 @@ import TaskList from './TaskList';
 import NewTaskModal from './NewTaskModal';
 
 let styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
   root: {
     flexGrow: 1,
   }
@@ -61,7 +65,10 @@ class ProjectManagement extends React.Component {
         <NewTaskModal isOpen={this.state.newTaskModelIsOpen} handleClose={this.handleModalClose} handleSubmit={this.handleModalSubmit} />
         <Grid container spacing={24} justify="center" alignItems="center">
           <Grid item xs align="center">
-            <Button variant="contained" color="default" onClick={this.handleNewTaskClick}>Add Task</Button>
+            <Typography variant="title">
+              Add Task
+              <Button variant="fab" color="primary" aria-label="add" className={classes.button} onClick={this.handleNewTaskClick}><AddIcon /></Button>
+            </Typography>
           </Grid>
           <Grid item xs={8}>
             <TaskList projectManager={projectManager} />

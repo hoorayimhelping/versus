@@ -90,6 +90,7 @@ class NewTaskModal extends React.Component {
 };
 
 NewTaskModal.propTypes = {
+  classes: PropTypes.object.isRequired,
   handleClose: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired

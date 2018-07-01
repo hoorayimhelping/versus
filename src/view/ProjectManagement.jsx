@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
+import { withStyles } from '@material-ui/core/styles';
+
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
@@ -9,8 +11,19 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-import Tasks from './Tasks';
+import TaskList from './TaskList';
 import NewTaskModal from './NewTaskModal';
+
+let styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }
+});
 
 class ProjectManagement extends React.Component {
   constructor(props) {
@@ -24,8 +37,6 @@ class ProjectManagement extends React.Component {
   }
 
   handleModalSubmit(name, description) {
-    console.log('submit', name, description);
-
     this.setState({
       newTaskModelIsOpen: false
     });
@@ -51,16 +62,14 @@ class ProjectManagement extends React.Component {
     let { classes, projectManager } = this.props;
 
     return (
-      <div>
+      <div className={classes.root}>
         <NewTaskModal isOpen={this.state.newTaskModelIsOpen} handleClose={this.handleModalClose} handleSubmit={this.handleModalSubmit} />
-        <Grid container spacing={24}>
-          <Grid item xs>
-            <Paper elevation={1}>
-              <Button onClick={this.handleNewTaskClick}>Add Task</Button>
-            </Paper>
+        <Grid container spacing={24} justify="center" alignItems="center">
+          <Grid item xs align="center">
+            <Button variant="contained" color="default" onClick={this.handleNewTaskClick}>Add Task</Button>
           </Grid>
           <Grid item xs={8}>
-            <Tasks projectManager={projectManager} />
+            <TaskList projectManager={projectManager} />
           </Grid>
         </Grid>
       </div>
@@ -72,4 +81,4 @@ ProjectManagement.propTypes = {
   projectManager: PropTypes.object.isRequired
 };
 
-export default ProjectManagement;
+export default withStyles(styles)(ProjectManagement);

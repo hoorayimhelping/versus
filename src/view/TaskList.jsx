@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Task from './Task';
 
-class Tasks extends React.Component {
+class TaskList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -30,7 +30,7 @@ class Tasks extends React.Component {
     return (
       <Grid container>
         <Grid item xs>
-          <Typography variant="display2" gutterBottom>
+          <Typography variant="display1" gutterBottom align="center">
             Todo
           </Typography>
           <List>
@@ -38,7 +38,7 @@ class Tasks extends React.Component {
           </List>
         </Grid>
         <Grid item xs>
-          <Typography variant="display2" gutterBottom>
+          <Typography variant="display1" gutterBottom align="center">
             In Progress
           </Typography>
           <List>
@@ -46,7 +46,7 @@ class Tasks extends React.Component {
           </List>
         </Grid>
         <Grid item xs>
-          <Typography variant="display2" gutterBottom>
+          <Typography variant="display1" gutterBottom align="center">
             Done
           </Typography>
           <List>
@@ -58,8 +58,8 @@ class Tasks extends React.Component {
   }
 }
 
-Tasks.propTypes = {
+TaskList.propTypes = {
   projectManager: PropTypes.object.isRequired
 };
 
-export default Tasks;
+export default TaskList;

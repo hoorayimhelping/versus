@@ -7,8 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from "@material-ui/core/IconButton";
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
 import Paper from '@material-ui/core/Paper';
@@ -18,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 let modalStyle = {
   top: '50%',
   left: '50%',
-  transform: 'translate(-50%, -50%)',
+  transform: 'translate(-50%, -50%)'
 };
 
 let styles = theme => ({
@@ -31,8 +29,8 @@ let styles = theme => ({
     width: theme.spacing.unit * 50,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4,
-  },
+    padding: theme.spacing.unit * 4
+  }
 });
 
 class NewTaskModal extends React.Component {

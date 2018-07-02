@@ -6,10 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import TaskList from './TaskList';
@@ -20,7 +16,7 @@ let styles = theme => ({
     margin: theme.spacing.unit
   },
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   }
 });
 
@@ -32,12 +28,12 @@ class ProjectManagement extends React.Component {
     this.handleNewTaskClick = this.handleNewTaskClick.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
 
-    this.state = { newTaskModelIsOpen: false };
+    this.state = { newTaskModalIsOpen: false };
   }
 
   handleModalSubmit(name, description) {
     this.setState({
-      newTaskModelIsOpen: false
+      newTaskModalIsOpen: false
     });
 
     this.props.projectManager.addTask(name, description);
@@ -46,14 +42,14 @@ class ProjectManagement extends React.Component {
   handleNewTaskClick(event) {
     event.preventDefault();
     this.setState({
-      newTaskModelIsOpen: true
+      newTaskModalIsOpen: true
     });
   }
 
   handleModalClose(event) {
     event.preventDefault();
     this.setState({
-      newTaskModelIsOpen: false
+      newTaskModalIsOpen: false
     });
   }
 
@@ -62,12 +58,12 @@ class ProjectManagement extends React.Component {
 
     return (
       <div className={classes.root}>
-        <NewTaskModal isOpen={this.state.newTaskModelIsOpen} handleClose={this.handleModalClose} handleSubmit={this.handleModalSubmit} />
+        <NewTaskModal isOpen={this.state.newTaskModalIsOpen} handleClose={this.handleModalClose} handleSubmit={this.handleModalSubmit} />
         <Grid container spacing={24} justify="center" alignItems="center">
           <Grid item xs align="center">
             <Typography variant="title">
               Add Task
-              <Button variant="fab" color="primary" aria-label="add" className={classes.button} onClick={this.handleNewTaskClick}><AddIcon /></Button>
+              <Button id="new-task" variant="fab" color="primary" aria-label="add" className={classes.button} onClick={this.handleNewTaskClick}><AddIcon /></Button>
             </Typography>
           </Grid>
           <Grid item xs={8}>
@@ -80,6 +76,7 @@ class ProjectManagement extends React.Component {
 };
 
 ProjectManagement.propTypes = {
+  classes: PropTypes.object.isRequired,
   projectManager: PropTypes.object.isRequired
 };
 

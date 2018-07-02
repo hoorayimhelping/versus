@@ -39,6 +39,8 @@ let createNewTask = function(name, description, state = Todo, id) {
      * tickets might look like they've gone through the whole process.
      **/
     if (([InProgress, Done, Completed].includes(state))) {
+      // we don't want a default case if the state change request is bad or malicious
+      /* eslint-disable default-case */
       switch (state) {
         case InProgress:
           taskStateMachine.start();
@@ -53,6 +55,7 @@ let createNewTask = function(name, description, state = Todo, id) {
           taskStateMachine.archive();
           break;
       }
+      /* eslint-enable default-case */
     }
   }
 
@@ -88,9 +91,12 @@ class ProjectManager {
   }
 
   transitionTask(taskId) {
-    let task = this.tasks.find(task => task.id == taskId);
+    // taskId might be a string, so a less strict check is preferred
+    let task = this.tasks.find(task => task.id == taskId); // eslint-disable-line eqeqeq
 
     if (task && task.transitionName) {
+      // we don't want a default case if the state change request is bad or malicious
+      /* eslint-disable default-case */
       switch(task.transitionName) {
         case Start:
           task.taskStateMachine.start();
@@ -102,6 +108,7 @@ class ProjectManager {
           task.taskStateMachine.archive();
           break;
       }
+      /* eslint-enable default-case */
     }
   }
 

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import ProjectManagement from './ProjectManagement';
 
-import ProjectManager, { Todo, InProgress, Done, Completed } from '../model/ProjectManager';
+import ProjectManager from '../model/ProjectManager';
 
 
 const manager = new ProjectManager();

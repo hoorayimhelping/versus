@@ -20,7 +20,7 @@ class TaskList extends React.Component {
     // we want to call `forceUpdate` here because the state of the projectManager has changed,
     // but it doesn't get picked up as a prop change, so a re-render needs to be explicitly called
     // this might also be accomplished by inspecting the state of the projectManager on `shouldComponentUpdate`
-    // but this is probably simpler and more straightforward
+    // but this is probably simpler and more straightforward. something i'd get feedback on in code review
     this.forceUpdate();
   }
 
@@ -33,7 +33,7 @@ class TaskList extends React.Component {
           <Typography variant="display1" gutterBottom align="center">
             Todo
           </Typography>
-          <List>
+          <List id="todo-list">
             {projectManager.todoTasks.map(task => (<Task task={task} key={`task-${task.name}-${task.id}`} onClick={this.handleClick} />))}
           </List>
         </Grid>
@@ -41,15 +41,15 @@ class TaskList extends React.Component {
           <Typography variant="display1" gutterBottom align="center">
             In Progress
           </Typography>
-          <List>
+          <List id="in-progress-list">
             {projectManager.inProgressTasks.map(task => (<Task task={task} key={`task-${task.name}-${task.id}`} onClick={this.handleClick} />))}
           </List>
         </Grid>
         <Grid item xs>
           <Typography variant="display1" gutterBottom align="center">
-            Done
+            Done ({projectManager.completedTasks.length} archived)
           </Typography>
-          <List>
+          <List id="done-list">
             {projectManager.doneTasks.map(task => (<Task task={task} key={`task-${task.name}-${task.id}`} onClick={this.handleClick} />))}
           </List>
         </Grid>

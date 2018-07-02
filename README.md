@@ -67,3 +67,5 @@ make test
 * prod vs dev dependencies: I decided to add everything as a prod dependency for this simple assignment since the prod and dev workflows aren't that different and it's an example. When starting a real project, this is something we'd take the time to think about, but it's not all _that_ important here
 
 * const / let: I personally prefer to use `let` for most variable initializations and typically reserve `const` to communicate context about the variable with respect to the domain (e.g. a shipping rate, or a map of sales-tax-to-states would be a `const`), rather than communicating intent about a variable referring to the same object. I bring this up because that's my style for coding, but this is an argument I usually lose overwhelmingly on team coding standards, and this is not a hill worth dying on by a long shot. But I wanted to explain why my style is different from industry convention (e.g: https://mathiasbynens.be/notes/es6-const)
+
+* tests: There are some simple unit tests and simple integration tests. These could be built out a little bit more, but for a small feature, they're a good baseline

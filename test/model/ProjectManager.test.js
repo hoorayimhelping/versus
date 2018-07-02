@@ -2,10 +2,7 @@ import ProjectManager, {
   Todo,
   InProgress,
   Done,
-  Completed,
-  Start,
-  Finish,
-  Archive
+  Completed
 } from '../../src/model/ProjectManager';
 
 

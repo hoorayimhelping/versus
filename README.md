@@ -69,3 +69,5 @@ make test
 * const / let: I personally prefer to use `let` for most variable initializations and typically reserve `const` to communicate context about the variable with respect to the domain (e.g. a shipping rate, or a map of sales-tax-to-states would be a `const`), rather than communicating intent about a variable referring to the same object. I bring this up because that's my style for coding, but this is an argument I usually lose overwhelmingly on team coding standards, and this is not a hill worth dying on by a long shot. But I wanted to explain why my style is different from industry convention (e.g: https://mathiasbynens.be/notes/es6-const)
 
 * tests: There are some simple unit tests and simple integration tests. These could be built out a little bit more, but for a small feature, they're a good baseline
+
+* state machine: I decided to use a finite state machine to model the task management system. I did some cursory research to find a decent library and went with that. It was a little bit weird to use and maybe made the abstractions in this system a little bit wonky. For a full on system, there might be more time spent evaluating the tool used.

@@ -20,7 +20,7 @@
 
 * Use the following URL to seed the initial application data - https://private-caaa7-versustracker.apiary-mock.com/tasks :heavy_check_mark:
 
-* Please review the mockups (attached) for how we would like it structured
+* Please review the mockups (attached) for how we would like it structured :heavy_check_mark:
 
 * When adding a new task the dialog is a modal that appears on top of the existing UI :heavy_check_mark:
 
